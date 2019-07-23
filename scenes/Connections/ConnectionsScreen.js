@@ -4,7 +4,6 @@ import ConnectionItem from '../../components/ConnectionItem';
 import styles from './styles';
 import firebaseApp from '../../firebase/firebase';
 
-
 export default class ConnectionsScreen extends Component {
     static route = {
         navigationBar: {

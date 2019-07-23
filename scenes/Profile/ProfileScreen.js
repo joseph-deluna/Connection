@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 //import {StyleSheet, Text, View, Modal , Button, TextInput } from 'react-native';
-import firebase from '../../firebase/firebase';
-import {Gravatar, GravatarApi} from 'react-native-gravatar';
+import firebase from 'firebase';
+import { Gravatar, GravatarApi } from 'react-native-gravatar';
 import ActionButton from '../../components/ActionButton';
 //import TextFieldInput from '../../components/TextFieldInput';
 import styles from './styles';
@@ -10,60 +10,33 @@ import styles from './styles';
 export default class Profile extends Component {
     static route = {
         navigationBar: {
-          title: 'Profile',
-          backgroundColor: '#33cccc',
-          tintColor: 'white',
+            title: 'Profile',
+            backgroundColor: '#33cccc',
+            tintColor: 'white',
         }
-      }
+    }
 
-    //   constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //       bio:'',
-    //       loading:'',
-    //       modalVisible: false,
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            name: '',
+            studentId: ''
+        };
 
-    //      };
-    //      this.itemsRef = this.getRef().child('users');
-    //    }
-    
-    //   getRef() {
-    //     return firebaseApp.database().ref();
-    //   }
-    
-    //   listenForItems(itemsRef) {
-    //     itemsRef.on('value', (snap) => {
-    
-    //       // get children as an array
-    //       var users = [];
-    //       snap.forEach((child) => {
-    //         users.push({
-    //           bio: child.val().bio,
-    //           _key: child.key
-    //         });
-    //       });
-    
-    //       this.setState({dataSource: this.state.dataSource});
-    //     });
-    //   }
-    
-    //   componentDidMount() {
-    //     this.listenForItems(this.itemsRef);
-    //   }
+        let uid = firebase.auth().currentUser.uid;
+        this.getRef().child('users').child(uid).once('value', (user) => {
+            this.setState({
+                email: user.val().email,
+                name: user.val().name,
+                studentId: user.val().studentId
+            });
+        });
+    }
 
-    //   openModal() {
-    //     this.setState({modalVisible:true});
-    //   }
-    
-    //   closeModal() {
-    //     this.setState({modalVisible:false});
-    //   }
-
-    // handleSubmit = () => {
-
-
-    // }
-
+    getRef() {
+        return firebaseApp.database().ref();
+    }
 
     signOutUser = async () => {
         try {
@@ -72,33 +45,30 @@ export default class Profile extends Component {
             console.log(error);
         }
     }
-    render() { 
+
+    render() {
         user = firebase.auth().currentUser;
-
-
-        //ADD LOGIC SO DATA IS BEING PULLED FROM CUSTOM USER OBJECT RATHER THAN FIREBASE AUTH
 
         return (
             <View style={styles.profileContainer}>
-            <View style={styles.innerProfileContainer}>
-                <Gravatar options={{
-                email: user.email,
-                parameters: { "size": "200", "d": "mm" },
-                secure: true
-                }}
-                style={styles.roundedProfileImage} />
+                <View style={styles.innerProfileContainer}>
+                    <Gravatar options={{
+                        email: user.email,
+                        parameters: { "size": "200", "d": "mm" },
+                        secure: true
+                    }}
+                        style={styles.roundedProfileImage} />
+                    <Text style={styles.profileText}>Hi {user.displayName}! </Text>
+                    <Text style={styles.profileText}> {user.email}</Text>
+                    {this.state.studentId.length > 0 &&
+                        <Text style={styles.profileText}> {this.state.studentId}</Text>
+                    }
+                    <Text style={styles.subProfileText}> To add or edit your image, log on to Gravatar! </Text>
+                </View>
 
-             <Text style={styles.profileText}>Hi {user.displayName}! </Text> 
-             <Text style={styles.profileText}> {user.email}</Text>
-             <Text style = {styles.subProfileText}> To add or edit your image, log on to Gravatar! </Text>
-             </View>
-
-    {/* INSERT MODAL HERE */}
-
-        
-            <ActionButton onPress={() => this.signOutUser()}  title="Logout" />
+                <ActionButton onPress={() => this.signOutUser()} title="Logout" />
             </View>
-        ); 
+        );
     };
 };
 
