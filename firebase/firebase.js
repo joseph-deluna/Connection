@@ -1,13 +1,14 @@
 import * as firebase from 'firebase';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAi5M3MW-nPAEx0NYuHNKg45GwE3G6qR8k",
-    authDomain: "connections-1887f.firebaseapp.com",
-    databaseURL: "https://connections-1887f.firebaseio.com",
-    projectId: "connections-1887f",
-    storageBucket: "connections-1887f.appspot.com",
-    messagingSenderId: "93737930365" 
-  };
-  
+  apiKey: "AIzaSyB_04LmPmeVr_6znPR7Zrbylk6ROuqloXs",
+  authDomain: "universitylink-app.firebaseapp.com",
+  databaseURL: "https://universitylink-app.firebaseio.com",
+  projectId: "universitylink-app",
+  storageBucket: "",
+  messagingSenderId: "997073428600",
+  appId: "1:997073428600:web:835076733103c7a9"
+};
+
 export default firebaseApp = firebase.initializeApp(firebaseConfig);
 
