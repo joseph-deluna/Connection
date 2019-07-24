@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, View, Button, ListView, AlertIOS, Modal } from 'react-native';
 import { StackNavigator, } from 'react-navigation';
+import { StyleSheet, Text, TextInput, View, Button, ListView, Alert, Modal } from 'react-native';
 import firebaseApp from '../../firebase/firebase';
 import styles from './styles';
 import ActionButton from '../../components/ActionButton';
 import EventItem from '../../components/EventItem';
-import firebase from 'firebase';
+import * as firebase from 'firebase'
 
 export default class EventsScreen extends Component {
   static route = {
@@ -99,10 +99,9 @@ export default class EventsScreen extends Component {
           visible={this.state.modalVisible}
           animationType={'slide'}
           onRequestClose={() => this.closeModal()}>
-
           <View style={styles.modalContainer}>
             <View style={styles.innerContainer}>
-              <View>
+              <View style={{ flex: 0, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'stretch', paddingVertical: 40 }}>
                 <Text style={{ color: '#ffffff', fontSize: 30, textAlign: 'center', }}> Create an Event! </Text>
                 <TextInput
                   style={styles.regInput}
@@ -157,9 +156,13 @@ export default class EventsScreen extends Component {
                   }}
                 />
               </View>
-              <View style={{ flex: 1, flexDirection: 'row', }}>
-                <Button onPress={() => this.closeModal()} color="white" title="Cancel" />
-                <Button onPress={this.handleSubmit.bind(this)} color="white" title="Submit" />
+              <View style={{ flex: 0, flexDirection: 'row' }}>
+                <View style={{ paddingHorizontal: 20 }}>
+                  <Button onPress={() => this.closeModal()} color="white" title="Cancel" />
+                </View>
+                <View style={{ paddingHorizontal: 20 }}>
+                  <Button onPress={this.handleSubmit.bind(this)} color="white" title="Submit" />
+                </View>
               </View>
             </View>
           </View>
@@ -173,7 +176,7 @@ export default class EventsScreen extends Component {
 
   _renderItem(item) {
     const onPress = () => {
-      AlertIOS.alert(
+      Alert.alert(
         'Remove?',
         null,
         [

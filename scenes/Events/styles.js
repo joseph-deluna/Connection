@@ -19,6 +19,8 @@ var styles = StyleSheet.create({
     height: '80%',
   },
   innerContainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
   regInput:{

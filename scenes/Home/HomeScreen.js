@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ListView, AlertIOS, AlertAndroid } from 'react-native';
 import { createRouter, NavigationProvider, StackNavigation, } from '@expo/ex-navigation';
+import { View, ListView, Alert } from 'react-native';
+import prompt from 'react-native-prompt-android';
 import ActionButton from '../../components/ActionButton';
 import PostItem from '../../components/PostItem';
 import styles from './styles';
 import firebaseApp from '../../firebase/firebase';
-import firebase from 'firebase';
+import * as firebase from 'firebase'
 
 export default class HomeScreen extends Component {
   static route = {
@@ -73,7 +74,7 @@ export default class HomeScreen extends Component {
   }
 
   _addItem() {
-    AlertAndroid.prompt(
+    prompt(
       'Submit a post!',
       null,
       [
@@ -85,14 +86,20 @@ export default class HomeScreen extends Component {
           }
         },
       ],
-      'plain-text'
+      {
+          type: 'default',
+          cancelable: false,
+          defaultValue: '',
+          keyboardType: 'default',
+          placeholder: 'Post'
+      }
     );
   }
 
   _renderItem(item) {
 
     const onPress = () => {
-      AlertIOS.alert(
+      Alert.alert(
         'Remove?',
         null,
         [
