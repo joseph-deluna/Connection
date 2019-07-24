@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Button, Modal } from 'react-native';
-import firebase from 'firebase';
+import * as firebase from 'firebase'
 import TextFieldInput from '../../components/TextFieldInput';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles.js';
