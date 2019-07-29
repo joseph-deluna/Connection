@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
 import App from './App';
 
-AppRegistry.registerComponent('FirebaseApp', () => App);
+AppRegistry.registerComponent('UConnect', () => App);

@@ -87,11 +87,11 @@ const styles = StyleSheet.create({
   },
   eventDateTime:{
     color: 'grey',
-    fontSize:11,
-    paddingRight:5,
+    fontSize: 13,
+    paddingRight: 5
   },
   eventDescText:{
-    fontSize:13,
+    fontSize: 13,
   },
   loginInputStyle: {
     paddingRight: 5,

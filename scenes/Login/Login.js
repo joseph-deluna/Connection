@@ -17,7 +17,8 @@ class SignInForm extends Component {
             userType: '',
             studentId: '',
             error: '',
-            bio: '',
+            skills: '',
+            talents: '',
             loading: false,
             modalVisible: false,
             dataSource: [],
@@ -36,7 +37,10 @@ class SignInForm extends Component {
                 users.push({
                     name: child.val().name,
                     email: child.val().email,
-                    bio: child.val().bio,
+                    userType: child.val().userType,
+                    studentId: child.val().studentId,
+                    skills: child.val().skills,
+                    skills: child.val().talents,
                     _key: child.key
                 });
             });
@@ -70,9 +74,10 @@ class SignInForm extends Component {
                 firebase.database().ref().child('users').child(uid).set({
                     name: this.state.name,
                     email: this.state.email.toLowerCase(),
-                    bio: this.state.bio,
                     userType: this.state.userType,
                     studentId: this.state.studentId,
+                    skills: this.state.skills,
+                    talents: this.state.talents,
                     userId: uid
                 })
 
@@ -85,9 +90,17 @@ class SignInForm extends Component {
 
     renderButtonOrLoading() {
         if (this.state.loading) {
-            return <View><Text> LOADING... </Text></View>
+            return (
+                <View style={{ paddingBottom: 15, alignSelf: 'center' }}>
+                    <Text>LOADING...</Text>
+                </View>
+            );
         }
-        return <Button onPress={this.onSignInPress.bind(this)} color='white' title="Log in" />;
+        return (
+            <View style={{ paddingBottom: 15 }}>
+                <Button onPress={this.onSignInPress.bind(this)} color='#ffa500' title="Log in" />
+            </View>
+        );
     }
 
     openModal() {
@@ -103,11 +116,11 @@ class SignInForm extends Component {
         return (
             <View style={styles.logInContainer} >
                 <LinearGradient colors={['#70dbdb', '#33cccc', '#196666']} style={styles.gradient} >
-                    <Text style={{ fontSize: 40, color: 'white', paddingBottom: 30, }}> CONNECTIONS </Text>
+                    <Text style={{ textAlign: 'center', fontSize: 40, color: 'white', paddingBottom: 15 }}>UConnect</Text>
 
                     <TextFieldInput
                         label='Email Address'
-                        placeholder='youremailaddress'
+                        placeholder='Your Email Address'
                         value={this.state.email}
                         onChangeText={email => this.setState({ email })}
                         autoCorrect={false}
@@ -121,8 +134,10 @@ class SignInForm extends Component {
                         onChangeText={password => this.setState({ password })}
                     />
                     <Text style={styles.errorTextStyle}>{this.state.error}</Text>
-                    {this.renderButtonOrLoading()}
-                    <Button onPress={() => this.openModal()} color='white' title="Register" />
+                    <View style={styles.buttonContainer}>
+                        {this.renderButtonOrLoading()}
+                        <Button onPress={() => this.openModal()} color='#ffa500' title="Register" />
+                    </View>
 
                     <Modal
                         visible={this.state.modalVisible}
@@ -130,7 +145,7 @@ class SignInForm extends Component {
                         onRequestClose={() => this.closeModal()}>
                         <LinearGradient colors={['#196666', '#33cccc', '#196666']} style={styles.gradient} >
 
-                            <Text style={{ fontSize: 25, color: 'white', paddingBottom: 30, }}> REGISTER </Text>
+                            <Text style={{ textAlign: 'center', fontSize: 25, color: 'white', paddingBottom: 15 }}>REGISTER</Text>
 
                             <TextFieldInput
                                 label='Name'
@@ -141,7 +156,7 @@ class SignInForm extends Component {
                             />
                             <TextFieldInput
                                 label='Email Address'
-                                placeholder='youremailaddress'
+                                placeholder='Your Email Address'
                                 value={this.state.email}
                                 onChangeText={email => this.setState({ email })}
                                 autoCorrect={false}
@@ -165,36 +180,42 @@ class SignInForm extends Component {
                                 <TextFieldInput
                                     label='Student ID'
                                     autoCorrect={false}
-                                    placeholder='Your student Id'
+                                    placeholder='Your Student ID'
                                     value={this.state.studentId}
                                     onChangeText={studentId => this.setState({ studentId })}
                                 />
                             )
                             }
                             <TextFieldInput
-                                label='Bio'
+                                label='Skills'
                                 autoCorrect={false}
-                                placeholder='Add a short bio'
-                                value={this.state.bio}
-                                onChangeText={bio => this.setState({ bio })}
+                                placeholder='Add Skills'
+                                value={this.state.skills}
+                                onChangeText={skills => this.setState({ skills })}
+                            />
+                            <TextFieldInput
+                                label='Talents'
+                                autoCorrect={false}
+                                placeholder='Add Talents'
+                                value={this.state.talents}
+                                onChangeText={talents => this.setState({ talents })}
                             />
 
-                            <Button onPress={() => this.closeModal()} color="white" title="Cancel" />
-                            <Button onPress={this.onRegisterPress.bind(this)} color="white" title="Submit" />
+                            <View style={styles.buttonContainer}>
+                                <View style={{ paddingBottom: 15 }}>
+                                    <Button onPress={() => this.closeModal()} color="#ffa500" title="Cancel" />
+                                </View>
+                                <View style={{ paddingBottom: 15 }}>
+                                    <Button onPress={this.onRegisterPress.bind(this)} color="#ffa500" title="Submit" />
+                                </View>
+                            </View>
                         </LinearGradient>
                     </Modal>
+
                 </LinearGradient>
             </View>
         );
     }
 }
+
 export default SignInForm;
-
-
-// var uid = firebase.auth().currentUser.uid;
-// firebase.database().ref().child('users').child(uid).set({
-//     name: this.state.name,
-//     email: this.state.email.toLowerCase(),
-//     bio: this.state.bio,
-//     userId: uid
-// })
