@@ -26,6 +26,7 @@ export default class EventsScreen extends Component {
       rsvp: '',
       invitedby: '',
       modalVisible: false,
+      validated: false,
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       })
@@ -72,7 +73,7 @@ export default class EventsScreen extends Component {
   }
 
   openModal() {
-    this.setState({ modalVisible: true });
+    this.setState({ modalVisible: true, validated: false });
   }
 
   closeModal() {
@@ -80,12 +81,26 @@ export default class EventsScreen extends Component {
   }
 
   handleSubmit = () => {
-    // event.preventDefault();
-    this.itemsRef.push({ title: this.state.title, desc: this.state.desc, date: this.state.date, time: this.state.time, location: this.state.location, invitedby: firebaseApp.auth().currentUser.displayName, rsvp: false });
-    this.setState({ modalVisible: false });
+    if (this.isFormValid()) {
+      this.itemsRef.push({ title: this.state.title, desc: this.state.desc, date: this.state.date, time: this.state.time, location: this.state.location, invitedby: firebaseApp.auth().currentUser.displayName, rsvp: false });
+      this.setState({ modalVisible: false });
+    }
+  }
+
+  isFormValid = () => {
+    let isValid = false;
+    const { title } = this.state;
+    if (title) {
+      isValid = true;
+    }
+
+    this.setState({ validated: true });
+
+    return isValid;
   }
 
   render() {
+    const { validated, text } = this.state;
 
     return (
       <View style={styles.container}>
@@ -102,18 +117,23 @@ export default class EventsScreen extends Component {
           <View style={styles.modalContainer}>
             <View style={styles.innerContainer}>
               <View style={{ flex: 0, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'stretch', paddingVertical: 40 }}>
-                <Text style={{ color: '#ffffff', fontSize: 30, textAlign: 'center', }}> Create an Event! </Text>
+                <Text style={{ color: '#ffffff', fontSize: 30, textAlign: 'center', }}>Create an Event!</Text>
                 <TextInput
                   style={styles.regInput}
                   placeholder={'Title'}
                   placeholderTextColor={"#196666"}
                   name="title"
                   ref="title"
+                  underlineColorAndroid="transparent"
                   onChangeText={text => {
                     this.setState({ title: text });
                   }}
-
                 />
+                {validated && !text &&
+                  <View style={{ marginTop: -10, paddingBottom: 10, paddingLeft: 10 }}>
+                    <Text style={{ color: '#E64A19' }}>Title cannot be empty!</Text>
+                  </View>
+                }
                 <TextInput
                   style={styles.multiInput}
                   placeholder={'Description'}
@@ -121,6 +141,7 @@ export default class EventsScreen extends Component {
                   placeholderTextColor={"#196666"}
                   name="desc"
                   ref="desc"
+                  underlineColorAndroid="transparent"
                   onChangeText={text => {
                     this.setState({ desc: text });
                   }}
@@ -131,6 +152,7 @@ export default class EventsScreen extends Component {
                   placeholderTextColor={"#196666"}
                   name="date"
                   ref="date"
+                  underlineColorAndroid="transparent"
                   onChangeText={text => {
                     this.setState({ date: text });
                   }}
@@ -141,6 +163,7 @@ export default class EventsScreen extends Component {
                   placeholderTextColor={"#196666"}
                   name="time"
                   ref="time"
+                  underlineColorAndroid="transparent"
                   onChangeText={text => {
                     this.setState({ time: text });
                   }}
@@ -151,17 +174,18 @@ export default class EventsScreen extends Component {
                   placeholderTextColor={"#196666"}
                   name="location"
                   ref="location"
+                  underlineColorAndroid="transparent"
                   onChangeText={text => {
                     this.setState({ location: text });
                   }}
                 />
               </View>
-              <View style={{ flex: 0, flexDirection: 'row' }}>
+              <View style={{ flex: 0, flexDirection: 'row', alignItems: 'stretch' }}>
                 <View style={{ paddingHorizontal: 20 }}>
-                  <Button onPress={() => this.closeModal()} color="white" title="Cancel" />
+                  <Button onPress={() => this.closeModal()} color="#ffa500" title="Cancel" />
                 </View>
                 <View style={{ paddingHorizontal: 20 }}>
-                  <Button onPress={this.handleSubmit.bind(this)} color="white" title="Submit" />
+                  <Button onPress={this.handleSubmit.bind(this)} color="#ffa500" title="Submit" />
                 </View>
               </View>
             </View>

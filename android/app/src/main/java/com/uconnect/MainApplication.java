@@ -1,4 +1,4 @@
-package com.firebaseapp;
+package com.uconnect;
 
 import android.app.Application;
 

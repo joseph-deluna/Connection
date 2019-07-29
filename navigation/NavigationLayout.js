@@ -20,7 +20,7 @@ import ConnectionsScreen from '../scenes/Connections/ConnectionsScreen';
     renderIcon(iconName, isSelected) {
         let color = isSelected ? '#ffffff' : '#999999' ;
         return(
-            <Icon name ={iconName} size = {24} color={color} />
+            <Icon name={iconName} size = {24} color={color} />
         )
     };
 
@@ -47,7 +47,7 @@ import ConnectionsScreen from '../scenes/Connections/ConnectionsScreen';
             title="Home"
             selectedStyle={styles.selectedTab}
             renderTitle={this.renderTitle}
-            renderIcon={(isSelected) => this.renderIcon('ios-home', isSelected)}>
+            renderIcon={(isSelected) => this.renderIcon('home', isSelected)}>
             <StackNavigation
               id="home"
               navigatorUID="home"
@@ -61,7 +61,7 @@ import ConnectionsScreen from '../scenes/Connections/ConnectionsScreen';
             title="Events"
             selectedStyle={styles.selectedTab}
             renderTitle={this.renderTitle}
-            renderIcon={(isSelected) => this.renderIcon('ios-calendar', isSelected)}>
+            renderIcon={(isSelected) => this.renderIcon('calendar', isSelected)}>
             <StackNavigation
               id="events"
               initialRoute={Router.getRoute('events')}
@@ -73,7 +73,7 @@ import ConnectionsScreen from '../scenes/Connections/ConnectionsScreen';
             title="Connections"
             selectedStyle={styles.selectedTab}
             renderTitle={this.renderTitle}
-            renderIcon={(isSelected) => this.renderIcon('ios-people', isSelected)}>
+            renderIcon={(isSelected) => this.renderIcon('people', isSelected)}>
             <StackNavigation
               id="connections"
               initialRoute={Router.getRoute('connections')}
@@ -85,7 +85,7 @@ import ConnectionsScreen from '../scenes/Connections/ConnectionsScreen';
             title="Profile"
             selectedStyle={styles.selectedTab}
             renderTitle={this.renderTitle}
-            renderIcon={(isSelected) => this.renderIcon('ios-person', isSelected)}>
+            renderIcon={(isSelected) => this.renderIcon('person', isSelected)}>
             <StackNavigation
               id="profile"
               initialRoute={Router.getRoute('profile')}

@@ -1,4 +1,4 @@
-import React, { StyleSheet, Dimensions,} from 'react-native';
+import React, { StyleSheet, Dimensions, } from 'react-native';
 const constants = {
   actionColor: '#24CE84'
 };
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     paddingTop: 14,
     paddingBottom: 16,
-    flex: 1, 
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   liText: {
     color: '#333',
     fontSize: 16,
-    flex:2
+    flex: 2
   },
   navbar: {
     alignItems: 'center',
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 16,
   },
-  eventsli:{
+  eventsli: {
     backgroundColor: '#fff',
     borderBottomColor: '#d6f5f5',
     borderColor: 'transparent',
@@ -76,22 +76,22 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     paddingTop: 14,
     paddingBottom: 16,
-    flex:1,
-    flexDirection:'row',
+    flex: 1,
+    flexDirection: 'row',
   },
-  eventsliText:{
+  eventsliText: {
     color: '#1f7a7a',
     fontSize: 16,
-    flex:2,
+    flex: 2,
     paddingBottom: 2,
   },
-  eventDateTime:{
+  eventDateTime: {
     color: 'grey',
-    fontSize:11,
-    paddingRight:5,
+    fontSize: 13,
+    paddingRight: 5
   },
-  eventDescText:{
-    fontSize:13,
+  eventDescText: {
+    fontSize: 13,
   },
   loginInputStyle: {
     paddingRight: 5,
@@ -101,44 +101,43 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '200',
     flex: 1,
-    height: 150,
-    width: 300,
     borderColor: 'gray',
-    borderWidth: 1,
-    marginLeft:20,
-},
-loginContainer: {
-    height: 60,
+    borderWidth: 1
+  },
+  loginContainer: {
+    flex: 1,
+    minHeight: 60,
+    maxHeight: 60,
     flexDirection: 'column',
-    alignItems: 'flex-start',
-    width: '100%',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
     borderColor: 'gray',
-    margin:15,
-},
-    roundedProfileImage: {
-      width:80, 
-      height:80, 
-      borderWidth:2,
-      borderColor:'white', 
-      borderRadius:40
-    },
-    connectionsli:{
-      backgroundColor: '#2eb8b8',
-      borderBottomColor: '#fff',
-      borderTopColor: '#fff',
-      borderColor: 'transparent',
-      borderWidth: 1,
-      paddingLeft: 16,
-      paddingRight: 16,
-      paddingTop: 14,
-      paddingBottom: 16,
-      flex:1,
-      flexDirection:'row',
-      alignItems:'center',
-    },
+    marginBottom: 15
+  },
+  roundedProfileImage: {
+    width: 80,
+    height: 80,
+    borderWidth: 2,
+    borderColor: 'white',
+    borderRadius: 40
+  },
+  connectionsli: {
+    backgroundColor: '#2eb8b8',
+    borderBottomColor: '#fff',
+    borderTopColor: '#fff',
+    borderColor: 'transparent',
+    borderWidth: 1,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 14,
+    paddingBottom: 16,
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 
 })
 
- module.exports = styles;
- module.exports.constants = constants;
+module.exports = styles;
+module.exports.constants = constants;
 

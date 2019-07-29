@@ -1,31 +1,33 @@
 'use strict';
-import React, {StyleSheet, Dimensions,} from 'react-native';
-let {width, height} = Dimensions.get('window')
+import React, { StyleSheet, Dimensions, } from 'react-native';
+let { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-
-errorTextStyle: {
+  errorTextStyle: {
     color: '#E64A19',
     alignSelf: 'center',
     paddingTop: 10,
     paddingBottom: 10
-    },
-    logInContainer:{
-      backgroundColor: '#d6f5f5',
-      height: height,
-      flex: 1,
-      flexDirection:'column',
-      alignItems:'center',
-      justifyContent: 'center',
-    },
-    gradient:{
-      height: height,
-      width:width,
-      flex: 1,
-      flexDirection:'column',
-      alignItems:'center',
-      justifyContent: 'center',
-
-    }
+  },
+  logInContainer: {
+    flex: 1,
+    backgroundColor: '#d6f5f5',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'stretch'
+  },
+  gradient: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    padding: 50
+  },
+  buttonContainer: {
+    flex: 0,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch'
+  }
 });
 export default styles;
