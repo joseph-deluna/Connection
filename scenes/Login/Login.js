@@ -116,7 +116,7 @@ class SignInForm extends Component {
         return (
             <View style={styles.logInContainer} >
                 <LinearGradient colors={['#70dbdb', '#33cccc', '#196666']} style={styles.gradient} >
-                    <Text style={{ textAlign: 'center', fontSize: 40, color: 'white', paddingBottom: 15 }}>UConnect</Text>
+                    <Text style={{ textAlign: 'center', fontSize: 40, color: 'white', paddingBottom: 50 }}>UConnect</Text>
 
                     <TextFieldInput
                         label='Email Address'

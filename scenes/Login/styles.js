@@ -21,14 +21,13 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'stretch',
-    padding: 20
+    padding: 50
   },
   buttonContainer: {
     flex: 0,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'stretch',
-    paddingHorizontal: 30
+    alignItems: 'stretch'
   }
 });
 export default styles;
