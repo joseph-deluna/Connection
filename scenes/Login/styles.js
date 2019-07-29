@@ -12,8 +12,6 @@ const styles = StyleSheet.create({
   logInContainer: {
     flex: 1,
     backgroundColor: '#d6f5f5',
-    height: height,
-    width: width,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'stretch'

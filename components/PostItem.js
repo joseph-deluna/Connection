@@ -27,8 +27,8 @@ export default class EventItem extends Component {
           <View style={{flexDirection: 'row', flexDirection: 'row', alignItems:'center'}}>
           <Text style={{color:'red' , fontSize:11}}> {liked && liked.length >0 ? liked.length : '' } </Text>
           { inArray ?  
-            <Icon onPress={this.props.onUnlike}   name='heart' color="red" style={{padding:5}}/> : 
-            <Icon onPress={this.props.onLike}  name='heart-empty' color="red"  style={{padding:5}}/>
+            <Icon onPress={this.props.onUnlike} name='heart' color="red" style={{padding:5}}/> : 
+            <Icon onPress={this.props.onLike} name='heart-empty' color="red"  style={{padding:5}}/>
           }
           {user === item.postedby ?
           <Icon onPress={this.props.onPress} name='close' style={{padding:5}} /> : null }
